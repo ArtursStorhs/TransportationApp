@@ -5,4 +5,5 @@
     <string name="password">Password</string>
     <string name="login">Login</string>
     <string name="register_here">Register Here.</string>
+    <string name="transportation_inc">Transportation inc</string>
 </resources>
