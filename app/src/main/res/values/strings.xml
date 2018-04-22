@@ -16,4 +16,6 @@
     <string name="date_from">Date From:</string>
     <string name="place_to_pick_a_car">Place to pick a car:"</string>
     <string name="no_information">No information</string>
+    <string name="dialog_message">User doesnt exist</string>
+    <string name="ok">OK</string>
 </resources>

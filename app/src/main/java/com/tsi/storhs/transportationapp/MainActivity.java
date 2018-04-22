@@ -1,47 +1,74 @@
 package com.tsi.storhs.transportationapp;
 
 import android.app.Activity;
-import android.os.AsyncTask;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
-import android.util.Log;
+import android.support.v7.app.AlertDialog;
+import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
 
-import java.io.IOException;
-import java.util.concurrent.TimeUnit;
+import org.json.JSONException;
+import org.json.JSONObject;
 
-import okhttp3.HttpUrl;
-import okhttp3.OkHttpClient;
-import okhttp3.Request;
-import okhttp3.Response;
-
-public class MainActivity extends Activity {
+public class MainActivity extends Activity implements AsyncResponse {
+    AsyncConnection asyncConnection = new AsyncConnection();
+    final Context context = this;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        new MyAsyncTask().execute(true);
+        asyncConnection.delegate = this;
+
+        Button button = findViewById(R.id.LoggingButton);
+        button.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+
+                JSONObject loggingPerson = new JSONObject();
+                EditText username = findViewById(R.id.username);
+                EditText password = findViewById(R.id.password);
+
+                try {
+                    loggingPerson.put("username", username.getText());
+                    loggingPerson.put("password", password.getText());
+
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+                asyncConnection.initLoggingPerson(loggingPerson);
+            }
+        });
     }
 
-    private class MyAsyncTask extends AsyncTask<Boolean, Boolean, Boolean> {
+    @Override
+    public void processFinish(Boolean output) {
+        if (output) {
 
-        @Override protected Boolean doInBackground(Boolean... booleans) {
-            OkHttpClient client = new OkHttpClient.Builder().connectTimeout(45, TimeUnit.SECONDS).build();
+        } else {
+            AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
+                    context);
 
-            HttpUrl build = new HttpUrl.Builder()
-                    .scheme("http")
-                    .host("192.168.1.102")
-                    .port(8889)
-                    .addPathSegment("mob")
-                    .build();
-            Request request = new Request.Builder().url(build).header("Some", "Shit").build();
+            // set title
+            alertDialogBuilder.setTitle("This User doesnt exist");
 
-            try {
-                Response response = client.newCall(request).execute();
-            } catch (IOException e) {
-                Log.e("some", "shit", e);
-            }
-            return null;
+            // set dialog message
+            alertDialogBuilder
+                    .setCancelable(false)
+                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            dialog.cancel();
+                        }
+                    });
+
+            // create alert dialog
+            AlertDialog alertDialog = alertDialogBuilder.create();
+
+            // show it
+            alertDialog.show();
         }
     }
 }
