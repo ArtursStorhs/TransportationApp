@@ -5,17 +5,19 @@
     <string name="password">Password</string>
     <string name="login">Login</string>
     <string name="register_here">Register Here.</string>
-    <string name="transportation_inc">Transportation inc</string>
+    <string name="car_rent">Car Rent</string>
     <string name="car_picture">Car Picture</string>
     <string name="manufacturer">Manufacturer:</string>
     <string name="model">Model:</string>
     <string name="caryear">Year:</string>
     <string name="price">Price:</string>
-    <string name="registartion_number">Registartion Number:</string>
+    <string name="registartion_number">Reg. Number:</string>
     <string name="date_to">Date To:</string>
     <string name="date_from">Date From:</string>
-    <string name="place_to_pick_a_car">Place to pick a car:"</string>
+    <string name="place_where_pick_a_car">Pick here:"</string>
     <string name="no_information">No information</string>
     <string name="dialog_message">User doesnt exist</string>
     <string name="ok">OK</string>
+    <string name="address">Address</string>
+    <string name="car_is_not_rented_yet">Car is not rented yet</string>
 </resources>

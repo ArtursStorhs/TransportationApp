@@ -11,7 +11,7 @@
         android:layout_height="200dp"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="17dp"
         android:contentDescription="@string/logo"
         android:src="@drawable/logo" />
 
@@ -22,7 +22,7 @@
         android:layout_marginTop="200dp"
         android:fontFamily="cursive"
         android:lineSpacingExtra="36sp"
-        android:text="@string/transportation_inc"
+        android:text="@string/car_rent"
         android:textColor="#D3B53D"
         android:textSize="36sp"
         android:typeface="monospace" />
